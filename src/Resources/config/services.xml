@@ -9,8 +9,14 @@
     </parameters>
 
     <services>
-        <service id="etudor.symfony_viewable." class="AppBundle\Form\FeedbackType">
-            <tag name="form.type"/>
+
+        <service id="etudor.viewable_bundle.generator" class="Etudor\ViewableBundle\Service\Generator">
+            <argument type="service" id="twig"/>
+        </service>
+
+        <service id="etudor.symfony_viewable.extension" class="Etudor\ViewableBundle\Twig\ViewExtension">
+            <argument type="service" id="etudor.viewable_bundle.generator"/>
+            <tag name="twig.extension"/>
         </service>
 
     </services>
