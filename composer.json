@@ -1,5 +1,5 @@
 {
-  "name": "etudor/symfony-viewable",
+  "name": "etudor/viewable-bundle",
   "description": "Viewable entities for symfony",
   "authors": [
     {
@@ -9,8 +9,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "Etudor\\SymfonyViewableBundle\\": "src"
+      "Etudor\\ViewableBundle\\": "src"
     }
   },
-  "require": {}
+  "require": {},
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

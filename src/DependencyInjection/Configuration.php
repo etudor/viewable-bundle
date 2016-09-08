@@ -1,6 +1,6 @@
 <?php
 
-namespace Etudor\SymfonyViewableBundle\DependencyInjection;
+namespace Etudor\ViewableBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

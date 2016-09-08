@@ -1,6 +1,6 @@
 <?php
 
-namespace Etudor\SymfonyViewableBundle\Twig;
+namespace Etudor\ViewableBundle\Twig;
 
 use AppBundle\Interfaces\ViewableInterface;
 use Doctrine\Common\Collections\Collection;
