@@ -1,0 +1,16 @@
+{
+  "name": "etudor/symfony-viewable",
+  "description": "Viewable entities for symfony",
+  "authors": [
+    {
+      "name": "Tudorel Enache",
+      "email": "enachetudorel@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Etudor\\SymfonyViewableBundle\\": "src"
+    }
+  },
+  "require": {}
+}
