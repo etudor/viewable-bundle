@@ -9,7 +9,7 @@ register bundle in AppKernel.php
 new Etudor\ViewableBundle\EtudorViewableBundle(),
 ```
 
-## Usage:
+## Usage: in this example post is an object, instance of Post entity.
 
 ##### Inside twig: ``` this ```
 - will try to render the ``` Post/base.html.twig ```
