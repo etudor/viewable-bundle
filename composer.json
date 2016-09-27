@@ -1,6 +1,7 @@
 {
   "name": "etudor/viewable-bundle",
   "description": "Viewable entities for symfony",
+  "type": "symfony-bundle",
   "authors": [
     {
       "name": "Tudorel Enache",
