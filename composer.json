@@ -12,6 +12,11 @@
       "Etudor\\ViewableBundle\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Etudor\\ViewableBundle\\Tests\\": "tests"
+    }
+  },
   "require": {},
   "minimum-stability": "dev",
   "prefer-stable": true
