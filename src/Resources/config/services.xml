@@ -12,6 +12,15 @@
         <service id="etudor.viewable_bundle.generator" class="Etudor\ViewableBundle\Service\Generator">
             <argument type="service" id="twig"/>
             <argument type="string">%viewable_default_view_name%</argument>
+            <call method="registerGenerator">
+                <argument type="service" id="etudor.generator.default"/>
+            </call>
+            <call method="registerGenerator">
+                <argument type="service" id="etudor.generator.array_generator"/>
+            </call>
+            <call method="registerGenerator">
+                <argument type="service" id="etudor.generator.accesor_generator"/>
+            </call>
         </service>
 
         <service id="etudor.symfony_viewable.extension" class="Etudor\ViewableBundle\Twig\ViewExtension">
@@ -21,6 +30,24 @@
 
         <service id="etudor.symfony_viewable.accessor.id" class="Etudor\ViewableBundle\Accessor\IdAccessor">
             <tag name="viewable.accessor"/>
+        </service>
+
+        <service id="etudor.generator.default" class="Etudor\ViewableBundle\Generator\DefaultGenerator">
+            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="twig"/>
+        </service>
+
+        <service id="etudor.generator.array_generator" class="Etudor\ViewableBundle\Generator\ArrayGenerator">
+            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="twig"/>
+        </service>
+
+        <service id="etudor.generator.accesor_generator" class="Etudor\ViewableBundle\Generator\AccesorGenerator">
+            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="twig"/>
+        </service>
+
+        <service id="etudor.class_name_provider" class="Etudor\ViewableBundle\Service\ClassNameProvider">
         </service>
 
     </services>
