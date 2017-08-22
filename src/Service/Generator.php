@@ -2,6 +2,7 @@
 
 namespace Etudor\ViewableBundle\Service;
 
+use function count;
 use Doctrine\Common\Collections\Collection;
 use Etudor\ViewableBundle\Accessor\ViewableAccessorInterface;
 use Etudor\ViewableBundle\Exception\NoAccessorTemplateException;
@@ -17,7 +18,7 @@ class Generator implements GeneratorInterface
 {
     const DEFAULT_VIEW = 'base';
 
-    const DEFAULT_OBJECT_NAME = 'this';
+    const DEFAULT_OBJECT_NAME       = 'this';
     const DEFAULT_OBJECT_COLLECTION = 'many';
 
     /**
@@ -47,14 +48,14 @@ class Generator implements GeneratorInterface
 
     /**
      * @param Twig_Environment $templating
-     * @param string $defaultViewName
+     * @param string           $defaultViewName
      */
     public function __construct(
         Twig_Environment $templating,
         string $defaultViewName = self::DEFAULT_VIEW
     )
     {
-        $this->templating = $templating;
+        $this->templating      = $templating;
         $this->defaultViewName = $defaultViewName;
     }
 
@@ -67,15 +68,16 @@ class Generator implements GeneratorInterface
      *
      * @throws ViewableException
      */
-    public function generate($object, $view = null, $params = []) : string
+    public function generate($object, $view = null, $params = []): string
     {
+        # pick the default view
         if (null === $view) {
             $view = $this->defaultViewName;
         }
 
         if (is_array($object) || $object instanceof Collection) {
 
-            if (empty($object)) {
+            if (count($object) == 0) {
                 return '';
             }
 
@@ -90,7 +92,7 @@ class Generator implements GeneratorInterface
             try {
                 // fallback
                 $viewTemplate = 'Entity/' . $this->getClassName($object) . '/' . $view . '.html.twig';
-                $template = $this->load($object, $viewTemplate, $params, $this->objectNameSingle);
+                $template     = $this->load($object, $viewTemplate, $params, $this->objectNameSingle);
             } catch (Twig_Error $e) {
                 throw new ViewableException(
                     $e->getMessage()
