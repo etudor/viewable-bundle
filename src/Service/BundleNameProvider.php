@@ -22,8 +22,6 @@ class BundleNameProvider
      */
     public function get($entity): string
     {
-        dump($this->classNameProvider->get($entity));
-
         $name = str_replace('Entity\\', '', $this->classNameProvider->get($entity));
 
         return str_replace('\\', ':', $name);
