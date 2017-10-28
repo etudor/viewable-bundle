@@ -33,21 +33,25 @@
         </service>
 
         <service id="etudor.generator.default" class="Etudor\ViewableBundle\Generator\DefaultGenerator">
-            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="etudor.bundle_name_provider"/>
             <argument type="service" id="twig"/>
         </service>
 
         <service id="etudor.generator.array_generator" class="Etudor\ViewableBundle\Generator\ArrayGenerator">
-            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="etudor.bundle_name_provider"/>
             <argument type="service" id="twig"/>
         </service>
 
         <service id="etudor.generator.accesor_generator" class="Etudor\ViewableBundle\Generator\AccesorGenerator">
-            <argument type="service" id="etudor.class_name_provider"/>
+            <argument type="service" id="etudor.bundle_name_provider"/>
             <argument type="service" id="twig"/>
         </service>
 
         <service id="etudor.class_name_provider" class="Etudor\ViewableBundle\Service\ClassNameProvider">
+        </service>
+
+        <service id="etudor.bundle_name_provider" class="Etudor\ViewableBundle\Service\BundleNameProvider">
+            <argument type="service" id="etudor.class_name_provider"/>
         </service>
 
     </services>

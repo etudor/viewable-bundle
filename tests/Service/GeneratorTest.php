@@ -2,6 +2,9 @@
 
 namespace Etudor\ViewableBundle\Tests\Service;
 
+use Etudor\ViewableBundle\Generator\AccesorGenerator;
+use Etudor\ViewableBundle\Generator\ArrayGenerator;
+use Etudor\ViewableBundle\Generator\DefaultGenerator;
 use Etudor\ViewableBundle\Service\Generator;
 use PHPUnit_Framework_TestCase;
 use Twig_Environment;
@@ -14,25 +17,32 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
     public function testGetSimpleView()
     {
         $expectedView = 'asd';
+        $generator = new Generator();
 
-        $twig = $this->getMockBuilder(Twig_Environment::class)
+        $accessorGenerator = $this->getMockBuilder(AccesorGenerator::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $generator = new Generator($twig);
+        $arrayGenerator = $this->getMockBuilder(ArrayGenerator::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $defaultGenerator = $this->getMockBuilder(DefaultGenerator::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $defaultGenerator->method('supports')
+            ->willReturn(true);
+
+        $defaultGenerator->expects($this->once())
+            ->method('generate')
+            ->willReturn('asd');
+
+        $generator->registerGenerator($accessorGenerator);
+        $generator->registerGenerator($arrayGenerator);
+        $generator->registerGenerator($defaultGenerator);
 
         $object = new \stdClass();
-
-        $twig->expects($this->once())
-            ->method('render')
-            ->with(
-                'Entity/stdClass/base.html.twig',
-                [
-                    Generator::DEFAULT_OBJECT_NAME => $object
-                ]
-            )
-            ->willReturn($expectedView);
-
         $view = $generator->generate($object);
 
         $this->assertEquals($expectedView, $view);

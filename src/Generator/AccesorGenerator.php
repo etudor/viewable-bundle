@@ -4,6 +4,7 @@ namespace Etudor\ViewableBundle\Generator;
 
 use Etudor\ViewableBundle\Accessor\ViewableAccessorInterface;
 use Etudor\ViewableBundle\Exception\NoAccessorTemplateException;
+use Etudor\ViewableBundle\Service\BundleNameProvider;
 use Etudor\ViewableBundle\Service\ClassNameProvider;
 use Twig_Environment;
 use Twig_Error;
@@ -31,7 +32,7 @@ class AccesorGenerator implements GeneratorInterface
      * @param ClassNameProvider $classNameProvider
      * @param Twig_Environment  $twigEnvironment
      */
-    public function __construct(ClassNameProvider $classNameProvider, Twig_Environment $twigEnvironment)
+    public function __construct(BundleNameProvider $classNameProvider, Twig_Environment $twigEnvironment)
     {
         $this->classNameProvider = $classNameProvider;
         $this->twigEnvironment   = $twigEnvironment;

@@ -3,6 +3,7 @@
 namespace Etudor\ViewableBundle\Generator;
 
 use Doctrine\Common\Collections\Collection;
+use Etudor\ViewableBundle\Service\BundleNameProvider;
 use Etudor\ViewableBundle\Service\ClassNameProvider;
 use Twig_Environment;
 
@@ -30,7 +31,7 @@ class ArrayGenerator implements GeneratorInterface
      * @param Twig_Environment  $twigEnvironment
      * @param string            $collectionKey
      */
-    public function __construct(ClassNameProvider $classNameProvider, Twig_Environment $twigEnvironment, $collectionKey = null)
+    public function __construct(BundleNameProvider $classNameProvider, Twig_Environment $twigEnvironment, $collectionKey = null)
     {
         $this->classNameProvider = $classNameProvider;
         $this->twigEnvironment   = $twigEnvironment;
@@ -59,7 +60,7 @@ class ArrayGenerator implements GeneratorInterface
 
         $firstItem = $objectArray[0];
 
-        $singleTemplate = 'Entity/' . $this->classNameProvider->get($firstItem) . '/Listing/' . $viewName . '.html.twig';
+        $singleTemplate = $this->classNameProvider->get($firstItem) . ':Listing/' . $viewName . '.html.twig';
 
         return $this->twigEnvironment->render(
             $singleTemplate,

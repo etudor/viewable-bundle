@@ -3,27 +3,29 @@
 namespace Etudor\ViewableBundle\Generator;
 
 use Doctrine\Common\Collections\Collection;
+use Etudor\ViewableBundle\Service\BundleNameProvider;
 use Etudor\ViewableBundle\Service\ClassNameProvider;
 use Twig_Environment;
+use function var_dump;
 
 class DefaultGenerator implements GeneratorInterface
 {
     const DEFAULT_VIEW = 'base';
 
     /**
-     * @var ClassNameProvider
+     * @var BundleNameProvider
      */
-    private $classNameProvider;
+    private $bundleNameProvider;
 
     /**
      * @var Twig_Environment
      */
     private $twigEnvironment;
 
-    public function __construct(ClassNameProvider $classNameProvider, Twig_Environment $twigEnvironment)
+    public function __construct(BundleNameProvider $bundleNameProvider, Twig_Environment $twigEnvironment)
     {
-        $this->classNameProvider = $classNameProvider;
-        $this->twigEnvironment   = $twigEnvironment;
+        $this->bundleNameProvider = $bundleNameProvider;
+        $this->twigEnvironment    = $twigEnvironment;
     }
 
     /**
@@ -39,7 +41,7 @@ class DefaultGenerator implements GeneratorInterface
      */
     public function generate($object, $viewName, $params)
     {
-        $viewTemplate = 'Entity/' . $this->classNameProvider->get($object) . '/' . $viewName . '.html.twig';
+        $viewTemplate = $this->bundleNameProvider->get($object) . ':' . $viewName . '.html.twig';
 
         return $this->twigEnvironment->render(
             $viewTemplate,

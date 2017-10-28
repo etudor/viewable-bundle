@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Twig_Environment;
 use Twig_Error;
 use Twig_Error_Loader;
+use function var_dump;
 
 class Generator
 {
@@ -65,7 +66,7 @@ class Generator
      */
     public function generate($object, $view = null, $params = []): string
     {
-        if (null === $view || $view == '') {
+        if (!$view) {
             $view = $this->defaultViewName;
         }
 
